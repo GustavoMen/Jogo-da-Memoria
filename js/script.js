@@ -47,7 +47,7 @@ function createCardsFromAnimals(animals){
         cards.push(createPairFromAnimals(animal));
     }
 
-    console.log(cards.flatMap(pair=>pair))
+    return cards.flatMap(pair=>pair)
 }
 
 

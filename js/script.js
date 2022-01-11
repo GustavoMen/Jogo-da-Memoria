@@ -4,29 +4,15 @@ const CARD = "card"
 const ICON = "icon"
 
 
-let animals = [
-    'bear',
-    'dog',
-    'elephant',
-    'lion',
-    'mico',
-    'passaro',
-    'snake',
-    'tiger',
-    'tucano',
-    'zebra',
-];
 
-let cards = null;
+
+
 
 startGame();
 
 function startGame(){
-    cards = createCardsFromAnimals(animals);
-    shuffleCards(cards);
     
-    initializeCards(cards);
-    
+    initializeCards(game.createCardsFromAnimals());
     
 }
 
@@ -34,7 +20,7 @@ function initializeCards(cards) {
     let gameBoard = document.getElementById("gameBoard");
     
     
-    cards.forEach(card=>{
+    game.cards.forEach(card=>{
 
         let cardElement = document.createElement('div')
         cardElement.id = card.id;
@@ -71,7 +57,7 @@ function createCardFace(face, card , element){
 }
 
 
-function shuffleCards(cards) {
+/*function shuffleCards(cards) {
     let currentIndex = cards.length;
     let randomIndex = 0;
 
@@ -82,10 +68,10 @@ function shuffleCards(cards) {
 
         [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]]
     }
-}
+}*/
 
 
-function createCardsFromAnimals(animals){
+/*function createCardsFromAnimals(animals){
 
     let cards = [];
 
@@ -114,7 +100,7 @@ function createPairFromAnimals(animal){
 
 function createIdWithAnimal(animal){
     return animal + parseInt(Math.random() * 1000);
-}
+}*/
 
 function flipCard(){
     this.classList.add("flip")

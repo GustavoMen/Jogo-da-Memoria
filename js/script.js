@@ -1,31 +1,59 @@
-const FRONT = "card_front"
-const back =  "bard_back"
+const FRONT = "card-front"
+const back =  "card-back"
+const CARD = "card"
+const ICON = "icon"
 
 
-let animals = [
-    'bear',
-    'dog',
-    'elephant',
-    'lion',
-    'mico',
-    'passaro',
-    'snake',
-    'tiger',
-    'tucano',
-    'zebra',
-];
 
-let cards = null;
+
+
 
 startGame();
 
 function startGame(){
-    cards = createCardsFromAnimals(animals);
+    cards = game.createCardsFromAnimals(animals);
     shuffleCards(cards);
-    console.log(cards);
+    initializeCards(cards);
 }
 
-function shuffleCards(cards) {
+function initializeCards(cards){
+    let gameBoard = document.getElementById("gameBoard")
+    
+    cards.forEach(card => {
+        let cardElement = document.createElement('div');
+        cardElement.id = card.id;
+        cardElement.classList.add(CARD);
+        cardElement.dataset.icon = card.icon;
+
+        createCardContent(card, cardElement)
+
+        cardElement.addEventListener('click', flipCard)
+        gameBoard.appendChild(cardElement);
+
+    })
+}
+
+function createCardContent(card, cardElement){
+    createCardFace(FRONT, card, cardElement)
+    createCardFace(back, card, cardElement)
+}
+
+
+function createCardFace(face, card, element){
+    let cardElementFace = document.createElement('div');
+    cardElementFace.classList.add(face)
+    if(face === FRONT){
+        let iconElement = document.createElement('img')
+        iconElement.classList.add(ICON)
+        iconElement.src = "./assets/" + card.icon + ".jpg";
+        cardElementFace.appendChild(iconElement);
+    }else{
+        cardElementFace.innerHTML = "&lt/&gt";
+    }
+    element.appendChild(cardElementFace);
+}
+
+/*function shuffleCards(cards) {
     let currentIndex = cards.length;
     let randomIndex = 0;
 
@@ -36,36 +64,9 @@ function shuffleCards(cards) {
 
         [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]]
     }
-}
+}*/
 
 
-function createCardsFromAnimals(animals){
-
-    let cards = [];
-
-    for(let animal of animals){
-        cards.push(createPairFromAnimals(animal));
-    }
-
-    return cards.flatMap(pair=>pair)
-}
-
-
-
-function createPairFromAnimals(animal){
-    return[{
-        id: createIdWithAnimal(animal),
-        icon: animal,
-        flipped: false,
-    }, {
-        id: createIdWithAnimal(animal),
-        icon: animal,
-        flipped: false,
-     } ]
-}
-
-
-
-function createIdWithAnimal(animal){
-    return animal + parseInt(Math.random() * 1000);
+function flipCard(){
+    this.classList.add("flip")
 }

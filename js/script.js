@@ -11,7 +11,7 @@ const ICON = "icon"
 startGame();
 
 function startGame(){
-    cards = game.createCardsFromAnimals(animals);
+    cards = game.createCardsFromAnimals();
     shuffleCards(cards);
     initializeCards(cards);
 }
@@ -70,3 +70,7 @@ function createCardFace(face, card, element){
 function flipCard(){
     this.classList.add("flip")
 }
+
+
+
+

@@ -1,9 +1,5 @@
 let game = {
 
-
-    cards : null,
-
-
     animals : [
         'bear',
         'dog',
@@ -17,20 +13,22 @@ let game = {
         'zebra',
     ],
 
-    
+    cards : null,
 
     createCardsFromAnimals: function(){
 
         this.cards = [];
     
-        this.animals.forEath ((animal) =>{
+        this.animals.forEath( (animal) =>{
         this.cards.push(this.createPairFromAnimals(animal));
         })
         
-        return this.cards.flatMap(pair=>pair)
+        this.card = this.cards.flatMap(pair => pair);
+        this.shuffleCards();
+        return this.cards
     },
     
-    
+
     
     createPairFromAnimals: function(animal){
         return[{
@@ -51,7 +49,7 @@ let game = {
     },
 
     shuffleCards: function (cards) {
-        let currentIndex = cards.length;
+        let currentIndex = this.cards.length;
         let randomIndex = 0;
     
         while(currentIndex !== 0){
@@ -59,8 +57,9 @@ let game = {
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--;
     
-            [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]]
+            [this.cards[randomIndex], this.cards[currentIndex]] = [this.cards[currentIndex], this.cards[randomIndex]]
         }
     }
 
 }
+

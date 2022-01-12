@@ -18,7 +18,7 @@ function startGame() {
 
 function initializeCards(cards) {
     let gameBoard = document.getElementById("gameBoard");
-
+    gameBoard.innerHTML = '';
 
     game.cards.forEach(card => {
 
@@ -60,27 +60,41 @@ function createCardFace(face, card, element) {
 function flipCard() {
     if (game.setCard(this.id)) {
         this.classList.add("flip");
-        if(game.secondCard){
+        if (game.secondCard) {
 
-        if (game.checkMatch()) {
+            if (game.checkMatch()) {
 
-            game.clearCards();
+                game.clearCards();
+                if (game.checkGameOver()) {
+                    let gameOverLayer = document.getElementById('gameOver');
+                    gameOverLayer.style.display = 'flex';
+                }
 
-        } else {
+            } else {
 
-            setTimeout(() => {
+                setTimeout(() => {
 
-                let fristCardView = document.getElementById(game.fristCard.id);
-                let SecondCardView = document.getElementById(game.secondCard.id);
+                    let fristCardView = document.getElementById(game.fristCard.id);
+                    let SecondCardView = document.getElementById(game.secondCard.id);
 
-                fristCardView.classList.remove('flip');
-                SecondCardView.classList.remove('flip');
-                game.unFlipCards();
-            }, 1000);
+                    fristCardView.classList.remove('flip');
+                    SecondCardView.classList.remove('flip');
+                    game.unFlipCards();
+                }, 1000);
 
 
-        }}
+            }
+        }
     }
+}
+
+function restart() {
+    game.clearCards();
+    startGame();
+    let gameOverLayer = document.getElementById('gameOver');
+    gameOverLayer.style.display = 'none';
+
+
 }
 
 

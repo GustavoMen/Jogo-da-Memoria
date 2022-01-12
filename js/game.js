@@ -14,9 +14,11 @@ let game = {
 
         if (!this.fristCard) {
             this.fristCard = card;
+            this.fristCard.flipped = true;
             return true;
         } else {
             this.secondCard = card;
+            this.secondCard.flipped = true;
             this.lockMode = true;
             return true;
         }
@@ -24,6 +26,9 @@ let game = {
     },
 
     checkMatch: function () {
+        if(!this.fristCard || !this.secondCard){
+            return false
+        }
         return this.fristCard.icon === this.secondCard.icon;
     },
 
@@ -32,6 +37,12 @@ let game = {
         this.secondCard = null;
         this.lockMode = false;
 
+    },
+
+    unFlipCards: function(){
+        this.fristCard.flipped = false;
+        this.secondCard.flipped = false;
+        this.clearCards();
     },
 
     animals: [

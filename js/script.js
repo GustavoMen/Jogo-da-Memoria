@@ -15,7 +15,6 @@ function startGame() {
     initializeCards(game.createCardsFromAnimals());
     unFlipStartGame();
 
-
 }
 
 function initializeCards(cards) {
@@ -125,9 +124,10 @@ function unFlipStartGame() {
         for (unflip of cardFlipped) {
 
             unflip.classList.remove('flip')
-
+            
         }
-    }, 3000)
+    }, 2000)
+   game.clearCards();
 }
 
 

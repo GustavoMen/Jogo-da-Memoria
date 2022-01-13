@@ -102,6 +102,15 @@ body{
     margin-top: 15px;
 }
 
+#backMenu{
+    padding: 20px;
+    font-size: 20px;
+    background-color: yellow;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
 #gameBoard{
     max-width: 900px;
 

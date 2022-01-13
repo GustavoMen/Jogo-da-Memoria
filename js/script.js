@@ -14,7 +14,7 @@ function startGame() {
 
     initializeCards(game.createCardsFromAnimals());
     game.unFlipStartGame();
-    game.lockMode = true;
+    
 
 }
 

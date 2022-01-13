@@ -117,18 +117,21 @@ function backMenu() {
 
 function unFlipStartGame() {
     let cardFlipped = document.getElementsByClassName('card');
-    console.log(cardFlipped)
+    game.lockModeTrue();
 
 
     setTimeout(() => {
         for (unflip of cardFlipped) {
 
+            
             unflip.classList.remove('flip')
             
         }
-    }, 2000)
-   game.clearCards();
+    }, 6000)
+    
+    game.clearCards();
 }
+
 
 
 

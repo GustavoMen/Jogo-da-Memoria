@@ -25,6 +25,10 @@ let game = {
 
     },
 
+    lockModeTrue: function(){
+        this.lockmode = true
+    },
+
     checkMatch: function () {
         if(!this.fristCard || !this.secondCard){
             return false

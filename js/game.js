@@ -25,12 +25,29 @@ let game = {
 
     },
 
-    lockModeTrue: function(){
-        this.lockmode = true
+    unFlipStartGame: function () {
+        let cardFlipped = document.getElementsByClassName('card');
+        this.lockMode = true;
+        
+            setTimeout(() => {
+                for (unflip of cardFlipped) {
+
+
+                    unflip.classList.remove('flip')
+                    
+                }
+            }, 1800)
+            
+            setTimeout(()=>{
+                this.lockMode = false;
+                
+            },2000)
+        
+        
     },
 
     checkMatch: function () {
-        if(!this.fristCard || !this.secondCard){
+        if (!this.fristCard || !this.secondCard) {
             return false
         }
         return this.fristCard.icon === this.secondCard.icon;
@@ -43,15 +60,15 @@ let game = {
 
     },
 
-    unFlipCards: function(){
+    unFlipCards: function () {
         this.fristCard.flipped = false;
         this.secondCard.flipped = false;
         this.clearCards();
     },
 
-    checkGameOver(){
+    checkGameOver() {
 
-       return this.cards.filter(card=>!card.flipped).length == 0
+        return this.cards.filter(card => !card.flipped).length == 0
 
     },
 

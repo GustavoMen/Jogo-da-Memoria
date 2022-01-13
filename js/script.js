@@ -8,12 +8,13 @@ const ICON = "icon"
 
 
 
-startGame();
+
 
 function startGame() {
 
     initializeCards(game.createCardsFromAnimals());
-    unFlipStartGame();
+    game.unFlipStartGame();
+    game.lockMode = true;
 
 }
 
@@ -61,31 +62,34 @@ function createCardFace(face, card, element) {
 
 
 function flipCard() {
-    if (game.setCard(this.id)) {
-        this.classList.add("flip");
-        if (game.secondCard) {
+    if (game.lockMode === false) {
 
-            if (game.checkMatch()) {
+        if (game.setCard(this.id)) {
+            this.classList.add("flip");
+            if (game.secondCard) {
 
-                game.clearCards();
-                if (game.checkGameOver()) {
-                    let gameOverLayer = document.getElementById('gameOver');
-                    gameOverLayer.style.display = 'flex';
+                if (game.checkMatch()) {
+
+                    game.clearCards();
+                    if (game.checkGameOver()) {
+                        let gameOverLayer = document.getElementById('gameOver');
+                        gameOverLayer.style.display = 'flex';
+                    }
+
+                } else {
+
+                    setTimeout(() => {
+
+                        let fristCardView = document.getElementById(game.fristCard.id);
+                        let SecondCardView = document.getElementById(game.secondCard.id);
+
+                        fristCardView.classList.remove('flip');
+                        SecondCardView.classList.remove('flip');
+                        game.unFlipCards();
+                    }, 1000);
+
+
                 }
-
-            } else {
-
-                setTimeout(() => {
-
-                    let fristCardView = document.getElementById(game.fristCard.id);
-                    let SecondCardView = document.getElementById(game.secondCard.id);
-
-                    fristCardView.classList.remove('flip');
-                    SecondCardView.classList.remove('flip');
-                    game.unFlipCards();
-                }, 1000);
-
-
             }
         }
     }
@@ -115,22 +119,7 @@ function backMenu() {
     gameOverLayer.style.display = 'none';
 }
 
-function unFlipStartGame() {
-    let cardFlipped = document.getElementsByClassName('card');
-    game.lockModeTrue();
 
-
-    setTimeout(() => {
-        for (unflip of cardFlipped) {
-
-            
-            unflip.classList.remove('flip')
-            
-        }
-    }, 6000)
-    
-    game.clearCards();
-}
 
 
 

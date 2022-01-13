@@ -13,6 +13,8 @@ startGame();
 function startGame() {
 
     initializeCards(game.createCardsFromAnimals());
+    unFlipStartGame();
+
 
 }
 
@@ -26,6 +28,8 @@ function initializeCards(cards) {
         cardElement.id = card.id;
         cardElement.classList.add(CARD);
         cardElement.dataset.icon = card.icon;
+        cardElement.classList.add('flip');
+
 
         createCardContent(card, cardElement);
 
@@ -89,7 +93,7 @@ function flipCard() {
 }
 
 
-function newGame(){
+function newGame() {
     game.clearCards();
     startGame();
     let newGameLayer = document.getElementById('newGame')
@@ -105,11 +109,25 @@ function restart() {
 
 }
 
-function backMenu(){
+function backMenu() {
     let newGameLayer = document.getElementById('newGame')
     newGameLayer.style.display = 'flex'
     let gameOverLayer = document.getElementById('gameOver');
     gameOverLayer.style.display = 'none';
+}
+
+function unFlipStartGame() {
+    let cardFlipped = document.getElementsByClassName('card');
+    console.log(cardFlipped)
+
+
+    setTimeout(() => {
+        for (unflip of cardFlipped) {
+
+            unflip.classList.remove('flip')
+
+        }
+    }, 3000)
 }
 
 

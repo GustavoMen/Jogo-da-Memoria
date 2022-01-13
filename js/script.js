@@ -88,6 +88,14 @@ function flipCard() {
     }
 }
 
+
+function newGame(){
+    game.clearCards();
+    startGame();
+    let newGameLayer = document.getElementById('newGame')
+    newGameLayer.style.display = 'none'
+}
+
 function restart() {
     game.clearCards();
     startGame();
@@ -95,6 +103,13 @@ function restart() {
     gameOverLayer.style.display = 'none';
 
 
+}
+
+function backMenu(){
+    let newGameLayer = document.getElementById('newGame')
+    newGameLayer.style.display = 'flex'
+    let gameOverLayer = document.getElementById('gameOver');
+    gameOverLayer.style.display = 'none';
 }
 
 

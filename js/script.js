@@ -3,7 +3,7 @@ const BACK = "card-back"
 const CARD = "card"
 const ICON = "icon"
 
-
+const flipSound = document.getElementById('flipSound')
 
 
 
@@ -63,7 +63,7 @@ function createCardFace(face, card, element) {
 
 function flipCard() {
     if (game.lockMode === false) {
-
+        flipGameSound();
         if (game.setCard(this.id)) {
             this.classList.add("flip");
             if (game.secondCard) {
@@ -118,6 +118,13 @@ function backMenu() {
     let gameOverLayer = document.getElementById('gameOver');
     gameOverLayer.style.display = 'none';
 }
+
+function flipGameSound() {
+    flipSound.volume = 0.1
+    flipSound.play()
+}
+
+
 
 
 

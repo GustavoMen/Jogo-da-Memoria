@@ -120,6 +120,8 @@ function backMenu() {
 }
 
 function flipGameSound() {
+
+    flipSound.duration = 0.9
     flipSound.volume = 0.1
     flipSound.play()
 }

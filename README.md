@@ -36,4 +36,4 @@
  <p > 🚧 Jogo da Memoria 🚀 Em construção... 🚧 </p>
  
  
- <h1 align="center">Feito com ❤ por Gustavo Mendonça.</h1>
+ <p align="center">Feito com ❤ por Gustavo Mendonça.</p>
